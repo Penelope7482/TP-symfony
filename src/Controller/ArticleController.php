@@ -48,15 +48,17 @@ class ArticleController extends AbstractController
      * 
      * @Route("/{article}", name="article_show", methods={"GET"})
      */
-    public function show($article)
-    {
-        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
-        $article = $articleRepository->find($article);
+   public function show($article)
+   {
+       $articleRepository = $this->getDoctrine()->getRepository(Article::class);
+       $article = $articleRepository->find($article);
 
-        return $this->render("/article/show.html.twig", [
-            'article' => $article
-        ]
-    );
+       return $this->render("/article/show.html.twig", [
+           'article' => $article
+       ]
+   );
+
+    
     }
  
     /**

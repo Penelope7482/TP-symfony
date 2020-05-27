@@ -47,4 +47,12 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
+  // public function findOne($value)
+  // {
+  //     return $this->createQueryBuilder('a')
+  //         ->andWhere('a.id = :val')
+  //         ->setParameter('val', $value)
+  //         ->getQuery()
+  //         ->getResult();
+  // }
 }
