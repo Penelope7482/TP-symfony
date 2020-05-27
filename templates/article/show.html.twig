@@ -3,7 +3,20 @@
 {% extends 'base.html.twig' %}
 
 
-
 {% block body %}
-<h1>Page de l'article dont l'id est</h1>
+	<h1>Page de l'article dont l'id est
+		{{article.id}}</h1>
+
+	<h3>Titre:
+		{{article.title}}</h3>
+	<ul>
+		<li>
+			Résumé:
+			{{article.shortContent}}
+		</li>
+		<li>
+			Description:
+			{{article.content}}
+		</li>
+	</ul>
 {% endblock %}

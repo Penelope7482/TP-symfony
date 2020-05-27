@@ -50,10 +50,13 @@ class ArticleController extends AbstractController
      */
     public function show($article)
     {
-  //      $articleRepository = $this->getDoctrine()->getRepository(Article::class);
-  //      $article = $articleRepository->find($article);
-  //      return $article;
-        return $this->render("/article/show.html.twig");
+        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
+        $article = $articleRepository->find($article);
+
+        return $this->render("/article/show.html.twig", [
+            'article' => $article
+        ]
+    );
     }
  
     /**
