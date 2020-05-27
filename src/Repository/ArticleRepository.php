@@ -11,6 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Article|null findOneBy(array $criteria, array $orderBy = null)
  * @method Article[]    findAll()
  * @method Article[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Article[]    findByTitle($value)
  */
 class ArticleRepository extends ServiceEntityRepository
 {
@@ -36,7 +37,7 @@ class ArticleRepository extends ServiceEntityRepository
     }
     */
 
-    /*
+  /*  
     public function findOneBySomeField($value): ?Article
     {
         return $this->createQueryBuilder('a')
@@ -55,4 +56,8 @@ class ArticleRepository extends ServiceEntityRepository
   //         ->getQuery()
   //         ->getResult();
   // }
+
+ 
+    
+  
 }

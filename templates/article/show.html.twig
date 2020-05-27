@@ -19,4 +19,7 @@
 			{{article.content}}
 		</li>
 	</ul>
+    <a href="{{ path("edit", {article: article.id}) }}"><input type="button" value="Modifier l'article"></a>
+	<br>
+	 <a href="{{ path("article_delete", {article: article.id}) }}"><input type="button" value="Supprimer l'article"></a>
 {% endblock %}

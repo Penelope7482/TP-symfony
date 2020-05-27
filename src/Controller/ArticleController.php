@@ -20,20 +20,20 @@ class ArticleController extends AbstractController
      * @Route("/", name="article_index", methods={"GET"})
      */
     public function index(Request $request)
-       
+
     {
-       
+
         // On importe le repository de l'entity Article
-       $articleRepository = $this->getDoctrine()->getRepository(Article::class);
+        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
 
         // Tous les articles
-       $articles = $articleRepository->findAll();
-   
+        $articles = $articleRepository->findAll();
+
         return $this->render('/article/index.html.twig', [
-         'articles' => $articles
-       ]);
+            'articles' => $articles
+        ]);
     }
-   /**
+    /**
      * Afficher le formulaire de création d'un article
      * 
      * @Route("/create", name="article_create", methods={"GET"})
@@ -48,19 +48,16 @@ class ArticleController extends AbstractController
      * 
      * @Route("/{article}", name="article_show", methods={"GET"})
      */
-   public function show($article)
-   {
-       $articleRepository = $this->getDoctrine()->getRepository(Article::class);
-       $article = $articleRepository->find($article);
+    public function show($article)
+    {
+        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
+        $article = $articleRepository->find($article);
 
-       return $this->render("/article/show.html.twig", [
-           'article' => $article
-       ]
-   );
-
-    
+        return $this->render("/article/show.html.twig", [
+            'article' => $article
+        ]);
     }
- 
+
     /**
      * Traiter le formulaire de création d'un article
      * 
@@ -83,6 +80,56 @@ class ArticleController extends AbstractController
 
         // On execute effectivement la requête :
         $manager->flush();
+        return $this->redirectToRoute("article_index");
+    }
+
+    /**
+     * @Route("/{article}/edit/", name="edit", methods={"GET"})
+     */
+    public function edit($article)
+    {
+        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
+        $article = $articleRepository->find($article);
+
+        return $this->render("/article/edit.html.twig", [
+            'article' => $article
+        ]);
+    }
+
+    /**
+     * @Route("/{article}/edit", name="edit_update", methods={"POST"})
+     */
+    public function update(Request $request, Article $article)
+    {
+
+
+        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
+        $article = $articleRepository->find($article);
+        $article->setTitle($_POST['title']);
+        $article->setContent($_POST['content']);
+        $article->setShortContent($_POST['short_content']);
+        // On récupère l'EntityManager du service Doctrine :
+        // Notez que le code est plus court que dans l'expliation ci-dessus !
+        $manager = $this->getDoctrine()->getManager();
+
+        // On donne l'object en gestion à Doctrine pour qu'il "persiste" l'object, c'est à dire qu'il prépare la requête
+        $manager->persist($article);
+
+        // On execute effectivement la requête :
+        $manager->flush();
+        return $this->redirectToRoute("article_index");
+    }
+
+    /**
+     * @Route("/{article}/delete", name="article_delete", methods={"GET"})
+     */
+    public function delete(Request $request, $article)
+    {
+        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
+        $article = $articleRepository->find($article);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($article);
+        $entityManager->flush();
         return $this->redirectToRoute("article_index");
     }
 }

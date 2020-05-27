@@ -1,0 +1,29 @@
+{# templates/edit.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	<h1>Modifier l'article dont l'id est
+		{{article.id}}</h1>
+
+	<form action="{{path("edit_update", {article: article.id} )}}" method="post">
+<div class="form-group">
+  <label for="title">Title</label>
+  <input type="text" name="title" id="title" class="form-control" placeholder="" aria-describedby="helpId" value={{article.title}}>
+  <small id="helpId" class="text-muted">Help text</small>
+</div>
+<div class="form-group">
+  <label for="short_content">Résumé</label>
+  <input type="text" name="short_content" id="short_content" class="form-control" placeholder="" aria-describedby="helpId" value={{article.shortContent}}>
+  <small id="helpId" class="text-muted">Help text</small>
+</div>
+<div class="form-group">
+  <label for="content">Description</label>
+  <input type="text" name="content" id="content" class="form-control" placeholder="" aria-describedby="helpId" value={{article.content}}>
+  <small id="helpId" class="text-muted">Help text</small>
+</div>
+ <a href="{{path("edit", {article: article.id})}}"><input name="" id="" class="btn btn-primary" type="submit" value="Modifier l'article">
+</a></form>
+  
+{% endblock %}
