@@ -11,7 +11,6 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Article|null findOneBy(array $criteria, array $orderBy = null)
  * @method Article[]    findAll()
  * @method Article[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- * @method Article[]    findByTitle($value)
  */
 class ArticleRepository extends ServiceEntityRepository
 {
@@ -57,7 +56,33 @@ class ArticleRepository extends ServiceEntityRepository
   //         ->getResult();
   // }
 
- 
-    
+    // /**
+    //  * @return Article[] Returns an array of last 5 Article objects
+    //  */
+  public function findByLastFive()
+  {
+      return $this->createQueryBuilder('a')
+       
+          ->orderBy('a.id', 'DESC')
+          ->setMaxResults(5)
+          ->getQuery()
+          ->getResult()
+      ;
+  }
   
+   // /**
+    //  * @return Article[] Returns an array of Article objects
+    //  */
+    
+    public function findBySearchString($data)
+    {
+        return $this->createQueryBuilder('a')
+            ->orWhere('a.title LIKE :val')
+            ->orWhere('a.short_content LIKE :val')
+            ->orWhere('a.content LIKE :val')
+            ->setParameter('val', '%'.$data.'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

@@ -5,6 +5,11 @@
 
 <h1>Page d'accueil</h1>
 
+<form action="{{path("article_searchstring") }}" method="get">
+<input type="text" name="q" id="searchstring">
+<input type="submit" value="Rechercher">
+</form>
+
 <ul>
     {% for article in articles %}
     <h3>Article #{{article.id}}</h3>
@@ -12,6 +17,7 @@
         <ul>
         <li>Résumé : {{ article.shortContent }} </li>
         <li>Description: {{article.content}}</li>
+        <li>Créé le : {{ article.createdAt | date('d/m/Y') }}</li>
         </ul>
         <br>
         <br>

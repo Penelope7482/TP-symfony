@@ -18,6 +18,10 @@
 			Description:
 			{{article.content}}
 		</li>
+		<li>
+			Créé le:
+			{{ article.createdAt | date('d/m/Y') }}
+		</li>
 	</ul>
     <a href="{{ path("edit", {article: article.id}) }}"><input type="button" value="Modifier l'article"></a>
 	<br>
