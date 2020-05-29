@@ -23,6 +23,7 @@
 						{{ article.createdAt | date('d/m/Y H:i', 'Europe/Paris')  }}</li>
 				</ul>
 			</a>
+			<form action="{{path("article_delete", {article:article.id}) }}" method="POST"> <input type="submit" value="delete"></form>
 			<br>
 			<br>
 		{% endfor %}
