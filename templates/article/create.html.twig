@@ -5,15 +5,19 @@
 
 
 {% block body %}
+
 {{ form_start(form) }}
- 
-{% if article is defined %}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+
+{#{% if article is defined %}
 <form action="{{path('article_update', {article: article.id})}}" method="post">
 {% else %}
   <form action="{{path('product_new')}}" method="post">
 {% endif %}
 
-{#<div class="form-group">
+<div class="form-group">
   <label for="title">Title</label>
   <input type="text" name="title" id="title" class="form-control" placeholder="" aria-describedby="helpId" value="{{article.title | default("")}}">
   <small id="helpId" class="text-muted">Help text</small>
@@ -27,8 +31,7 @@
   <label for="content">Description</label>
   <input type="text" name="content" id="content" class="form-control" placeholder="" aria-describedby="helpId" value="{{article.content| default("")}}">
   <small id="helpId" class="text-muted">Help text</small>
-</div>#}
-
+</div>
 
 
 {% if article is defined %}
@@ -36,5 +39,6 @@
 {% else %}  
 <input name="Delete" id="" class="btn btn-primary" type="submit" value="Créer un nouvel article">
 {% endif %}
-</form>
+</form>#}
+
 {% endblock %}
