@@ -155,7 +155,7 @@ public function update(Request $request, Article $article): Response
     {
 
     // CAS GET (affichage) :
-        // On prépare l'article à créer avec le formulaire
+     
         
 
         // On prépare le formulaire : on utilise le service createForm avec en arguments: le formulaire généré (ArticleType) et l'objet traité par le formulaire ($article)
@@ -170,7 +170,7 @@ public function update(Request $request, Article $article): Response
 
             // On enregistre la donnée
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($article);
+           
             $entityManager->flush();
 
             // On redirige vers la page article_index
