@@ -156,9 +156,7 @@ public function update(Request $request, Article $article): Response
 
     // CAS GET (affichage) :
      
-        
-
-        // On prépare le formulaire : on utilise le service createForm avec en arguments: le formulaire généré (ArticleType) et l'objet traité par le formulaire ($article)
+                // On prépare le formulaire : on utilise le service createForm avec en arguments: le formulaire généré (ArticleType) et l'objet traité par le formulaire ($article)
         $form = $this->createForm(ArticleType::class, $article);
 
     // CAS POST (traitement) :
@@ -200,7 +198,6 @@ public function update(Request $request, Article $article): Response
    }
 
  
-
        /**
      * Afficher un article
      * 
